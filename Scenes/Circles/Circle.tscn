@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Circles2.gd" type="Script" id=1]
+
+
+
+
+[node name="DeltaCircle" type="Node2D"]
+
+position = Vector2( 268.306, 67.8303 )
+script = ExtResource( 1 )
+rotation_ang = 50
+color = null
+
+

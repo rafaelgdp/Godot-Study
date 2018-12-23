@@ -1,0 +1,170 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Circles/Circle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Circles2.gd" type="Script" id=2]
+
+
+
+
+
+
+
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+
+"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Node2D
+
+var rotation_ang = 50
+var angle_from = 75
+var angle_to = 195
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+	
+func wrap(value, min_val, max_val):
+    var f1 = value - min_val
+    var f2 = max_val - min_val
+    return fmod(f1, f2) + min_val
+
+func _process(delta):
+    angle_from += rotation_ang
+    angle_to += rotation_ang
+
+    # We only wrap angles if both of them are bigger than 360
+    if angle_from > 360 and angle_to > 360:
+        angle_from = wrap(angle_from, 0, 360)
+        angle_to = wrap(angle_to, 0, 360)
+    update()
+
+func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
+    var nb_points = 32
+    var points_arc = PoolVector2Array()
+    points_arc.push_back(center)
+    var colors = PoolColorArray([color])
+
+    for i in range(nb_points+1):
+        var angle_point = deg2rad(angle_from + i * (angle_to - angle_from) / nb_points - 90)
+        points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
+    draw_polygon(points_arc, colors)
+
+func _draw():
+   var center = Vector2(200, 200)
+   var radius = 80
+   var color = Color(1.0, 0.0, 0.0)
+
+   draw_circle_arc_poly( center, radius, angle_from, angle_to, color )"
+
+[node name="Circles" type="Node" index="0"]
+
+script = SubResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="." index="0"]
+
+position = Vector2( 105.216, 101.414 )
+script = SubResource( 2 )
+
+[node name="DeltaCircle" parent="." index="1" instance=ExtResource( 1 )]
+
+rotation_ang = 120
+color = Color( 1, 1, 1, 1 )
+angle_from = 75
+angle_to = 195
+
+[node name="DeltaCircle2" type="Node2D" parent="." index="2"]
+
+position = Vector2( 555.305, 77.9005 )
+script = ExtResource( 2 )
+rotation_ang = 60
+color = Color( 0.0122833, 0.628906, 0.151987, 1 )
+angle_from = 75
+angle_to = 195
+
+[node name="DeltaCircle3" type="Node2D" parent="." index="3"]
+
+position = Vector2( 640.901, 299.443 )
+script = ExtResource( 2 )
+rotation_ang = 70
+color = Color( 0.601562, 0.110443, 0.110443, 1 )
+angle_from = 75
+angle_to = 195
+
+[node name="DeltaCircle4" type="Node2D" parent="." index="4"]
+
+position = Vector2( 443.158, 266.799 )
+script = ExtResource( 2 )
+rotation_ang = 80
+color = Color( 0.345359, 0.0350952, 0.898438, 1 )
+angle_from = 75
+angle_to = 195
+
+[node name="DeltaCircle5" type="Node2D" parent="." index="5"]
+
+position = Vector2( 251.726, 280.365 )
+script = ExtResource( 2 )
+rotation_ang = 90
+color = Color( 1, 1, 1, 1 )
+angle_from = 75
+angle_to = 195
+
+[node name="DeltaCircle6" type="Node2D" parent="." index="6"]
+
+position = Vector2( 458.163, 83.9977 )
+script = ExtResource( 2 )
+rotation_ang = 90
+color = Color( 0.898438, 1, 0, 1 )
+angle_from = 75
+angle_to = 195
+
+[node name="DeltaCircle7" type="Node2D" parent="." index="7"]
+
+position = Vector2( 674.354, 262.207 )
+scale = Vector2( 0.954106, 1 )
+script = ExtResource( 2 )
+rotation_ang = 90
+color = Color( 0.898438, 1, 0, 1 )
+angle_from = 246.362
+angle_to = 366.362
+
+[node name="Camera2D" type="Camera2D" parent="." index="8"]
+
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+
