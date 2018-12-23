@@ -3,13 +3,6 @@
 [ext_resource path="res://Scenes/Circles/Circle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Circles2.gd" type="Script" id=2]
 
-
-
-
-
-
-
-
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends Node
@@ -139,8 +132,8 @@ scale = Vector2( 0.954106, 1 )
 script = ExtResource( 2 )
 rotation_ang = 90
 color = Color( 0.898438, 1, 0, 1 )
-angle_from = 246.362
-angle_to = 366.362
+angle_from = 75
+angle_to = 195
 
 [node name="Camera2D" type="Camera2D" parent="." index="8"]
 
